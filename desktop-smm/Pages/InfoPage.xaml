@@ -1,0 +1,62 @@
+﻿<Page x:Class="desktop_smm.Pages.InfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:desktop_smm.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="InfoPage" Background="White">
+
+    <Grid Margin="0 90 0 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="230"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel 
+            Margin="50 0 40 0 ">
+            <TextBlock 
+                x:Name="tbTitle"
+                Style="{StaticResource BaseText}"
+                FontSize="24"
+                Foreground="{StaticResource ColorTextAccent}"
+                Margin="0 0 0 45"/>
+            <TextBlock
+                x:Name="tbDescription"
+                Style="{StaticResource BaseText}"
+                FontSize="18"
+                LineHeight="28"
+                TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel 
+            x:Name="stButtons"
+            Grid.Column="1"
+            Margin="0 25 0 0">
+            <Button 
+                Style="{StaticResource ButtonInfo}">
+                <TextBlock 
+                    Text="Как это работает?"
+                    Tag="Все просто!&#10;Приложение предназначено для упрощения работы операторам SMM-CRAFT.ru, здесь собраны несколько ресселеров, при помощи которых оформляются заказы. Также, разработан модуль телеграма, чтобы непосредственно напрямую в приложение писали клиенты с интересующими вопросами. Ко всему прочем, реализована отправка писем, браузер и список оформленных заказов, который можно выгрузить в Google DOCS"
+                    Style="{StaticResource InfoButtonText}"/>
+            </Button>
+            <Button 
+                Style="{StaticResource ButtonInfo}"
+                Margin="0 10 0 10">
+                <TextBlock 
+                    Text="Правила оформления заказа"
+                    Tag="Чтобы создать компанию, нужно:&#10;1. Выбрать ресселер&#10;2. Выбрать тип(Лайки, просмотры и т.д)&#10;3. Заполнить поля ввода верно, обязательно править ссылку, а также подгонять под соц. сеть&#10;4. Выбрать тип платежной системы(Из админки), а также заполнить сумму заказа&#10;5. Создайте компанию, кликнув по соотвествующей кнопке"
+                    Style="{StaticResource InfoButtonText}"/>
+            </Button>
+            <Button 
+                Style="{StaticResource ButtonInfo}"
+                Margin="0 10 0 10">
+                <TextBlock 
+                    Text="Как пользоваться Списком заказов?"
+                    Tag="На странице Список заказов, отображены все созданные компании&#10;К каждому заказу можно написать комментарий для личных целей, также все заказы сортированы по дате их создания.&#10;Если нужен конкретный заказ, то воспользуйтесь поиском&#10;У каждого заказа можно проверить статус его выполнения&#10;Если Вам нужно добавить заказ, воспользуйтесь соответствующей кнопкой&#10;Для выгрузки заказов за текущие число, воспользуйтесь соотвествующей кнопкой. После Вам нужно будет подкорректировать таблицу уже на сайте Google DOCS"
+                    Style="{StaticResource InfoButtonText}"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

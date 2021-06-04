@@ -1,0 +1,361 @@
+﻿<Application x:Class="desktop_smm.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:desktop_smm"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!--- Fonts -->
+            <FontFamily x:Key="MullerBold">Resources/Fonts/MullerBold.ttf#Muller</FontFamily>
+            <FontFamily x:Key="MullerLight">Resources/Fonts/MullerLight.ttf#Muller</FontFamily>
+            <FontFamily x:Key="MullerMedium">Resources/Fonts/MullerMedium.ttf#Muller</FontFamily>
+            <FontFamily x:Key="MullerRegular">Resources/Fonts/MullerRegular.ttf#Muller</FontFamily>
+        <!--- Fonts -->
+        
+        <!--- Colors -->
+            <SolidColorBrush x:Key="ColorButtonAccent" Color="#6484F3"/>
+            <SolidColorBrush x:Key="ColorButtonActive" Color="#BD7DF4"/>
+            <SolidColorBrush x:Key="ColorText" Color="#666666"/>
+            <SolidColorBrush x:Key="ColorTextAccent" Color="#9F9F9F"/>
+            <SolidColorBrush x:Key="ColorBorder" Color="#B5B4B4"/>
+        <!--- Colors -->
+        
+        <Style TargetType="Button" x:Key="BaseButton">
+            <Style.Setters>
+                <Setter Property="Background" Value="{StaticResource ColorButtonAccent}"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="{StaticResource MullerMedium}"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding Background}"
+                                BorderThickness="1"
+                                CornerRadius="20"
+                                MaxWidth="232"
+                                Height="69">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource ColorButtonActive}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style BasedOn="{StaticResource BaseButton}" TargetType="Button" x:Key="ButtonInfo">
+            <Style.Setters>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Foreground" Value="{StaticResource ColorText}"/>
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="BitmapEffect">
+                    <Setter.Value>
+                        <DropShadowBitmapEffect 
+                        Color="Black" 
+                        Softness="1" 
+                        ShadowDepth="5" 
+                        Opacity="0.15" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding Background}"
+                                BorderThickness="1"
+                                CornerRadius="40 0 0 40"
+                                Height="69">
+                                <ContentPresenter 
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center"
+                                    Margin="20 0"
+                                    TextBlock.TextAlignment="Center"
+                                    TextBlock.FontFamily="{StaticResource MullerLight}"
+                                    TextBlock.FontWeight="Light"
+                                    TextBlock.FontSize="13"
+                                    TextBlock.Foreground="{StaticResource ColorText}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="1"/>
+                                        <Setter Property="Background" Value="#e0e0e0"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#e0e0e0"/>
+                                    <Setter Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+        
+        <Style TargetType="TextBlock" x:Key="BaseText">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorText}"/>
+            <Setter Property="FontFamily" Value="{StaticResource MullerLight}"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="InfoButtonText">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorTextAccent}"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="ResellerText" BasedOn="{StaticResource BaseText}">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="{StaticResource ColorButtonAccent}"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource ColorButtonActive}"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            MinWidth="110"
+                            CornerRadius="10"
+                            Padding="{TemplateBinding Padding}">
+
+                            <Grid Margin="5">
+                                <ScrollViewer
+                                    x:Name="PART_ContentHost"
+                                    Margin="0"
+                                    VerticalAlignment="Center"/>
+                                <TextBlock
+                                    x:Name="hint"
+                                    VerticalAlignment="Center"
+                                    TextAlignment="Left"
+                                    Background="Transparent"
+                                    Foreground="{StaticResource ColorText}"
+                                    IsHitTestVisible="False"
+                                    Text="{TemplateBinding Uid}"
+                                    Visibility="Collapsed"
+                                    FontFamily="{StaticResource MullerLight}"
+                                    FontWeight="Light"
+                                    FontSize="14">
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Visibility" Value="Visible" TargetName="hint"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <StackPanel Orientation="Horizontal">
+                            <Border
+                                x:Name="checkboxBorder"
+                                BorderThickness="3"
+                                CornerRadius="8"
+                                Width="30"
+                                Height="30"
+                                Background="Transparent"
+                                BorderBrush="#3E5398">
+                                <Image x:Name="checkboxImage" Height="15" Width="15"/>
+                            </Border>
+                            <ContentPresenter
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextBlock.FontFamily="{StaticResource MullerLight}"
+                                TextBlock.FontWeight="Light"
+                                TextBlock.FontSize="13"
+                                TextBlock.Foreground="{StaticResource ColorText}"
+                                Margin="10 0 0 0"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsEnabled" Value="True"/>
+                                    <Condition Property="IsChecked" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="/Resources/Icons/check.png"/>
+                                <Setter TargetName="checkboxBorder" Property="Background" Value="#6484F3"/>
+                            </MultiTrigger>
+                            <DataTrigger Binding="{Binding ElementName=checkboxBorder, Path=IsFocused}" Value="True">
+                                <Setter TargetName="checkboxImage" Property="Source" Value="/Resources/Icons/check.png"/>
+                                <Setter TargetName="checkboxBorder" Property="Background" Value="#6484F3"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="32" />
+                            </Grid.ColumnDefinitions>
+                            <Border
+                                x:Name="Border"
+                                Grid.ColumnSpan="2"
+                                Background="{TemplateBinding Background}"/>
+                            <Path
+                                x:Name="Arrow"
+                                Grid.Column="1"    
+                                Fill="{TemplateBinding Foreground}"
+                                Stroke="{TemplateBinding Foreground}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Data="M 0 0 L 4 4 L 8 0 Z"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
+            <Border x:Name="PART_ContentHost" Focusable="True" />
+        </ControlTemplate>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="BorderBrush" Value="{StaticResource ColorBorder}" />
+            <Setter Property="Foreground" Value="{StaticResource ColorText}"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="ItemContainerStyle" Value="{DynamicResource theComboBoxItem}"/>
+            <Setter Property="IsEditable" Value="True"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{StaticResource ColorBorder}"
+                            CornerRadius="10"
+                            Padding="{TemplateBinding Padding}"
+                            Width="{TemplateBinding Width}">
+                            <Grid>
+                                <ToggleButton
+                                    Cursor="Hand"
+                                    Name="ToggleButton"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Style="{StaticResource ComboBoxToggleButton}"
+                                    IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                    ClickMode="Press"/>
+
+                                <ContentPresenter
+                                    Name="ContentSite"
+                                    IsHitTestVisible="False"
+                                    Content="{TemplateBinding SelectionBoxItem}"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"/>
+
+                                <TextBox x:Name="PART_EditableTextBox"
+                                    Style="{x:Null}"
+                                    Template="{StaticResource ComboBoxTextBox}"
+                                    FontFamily="{StaticResource MullerLight}"
+                                    FontWeight="Light"
+                                    FontSize="13"
+                                    Foreground="{StaticResource ColorText}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Focusable="True"/>
+                                <Popup
+                                    Name="Popup"
+                                    Placement="Bottom"
+                                    IsOpen="{TemplateBinding IsDropDownOpen}"
+                                    AllowsTransparency="True"
+                                    Focusable="False"
+                                    PopupAnimation="Slide">
+                                    <Grid
+                                        Name="DropDown"
+                                        Width="{TemplateBinding ActualWidth}"
+                                        MinHeight="100"
+                                        MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <Border
+                                            CornerRadius="8"
+                                            x:Name="DropDownBorder"
+                                            Background="White"
+                                            BorderThickness="1"
+                                            BorderBrush="#F6F6F6"/>
+                                            <ScrollViewer
+                                                VerticalScrollBarVisibility="Hidden">
+                                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                            </ScrollViewer>
+                                    </Grid>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="theComboBoxItem" TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border
+                            Name="Border"
+                            Padding="5"
+                            Margin="2"
+                            BorderThickness="2,0,0,0"
+                            CornerRadius="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent">
+                                <TextBlock TextAlignment="Left">
+                                <ContentPresenter/>
+                            </TextBlock>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="true">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource ResourceKey=ColorButtonAccent}"/>
+                                <Setter TargetName="Border" Property="Background" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Application.Resources>
+</Application>
