@@ -28,20 +28,7 @@ namespace desktop_smm.Pages
         {
             InitializeComponent();
 
-            var a = Services.Validator.Check(new Dictionary<Control, string>
-            {
-                { tb1, "Email" },
-                { tb2, "Text" }
-            });
-            if (a is bool)
-                MessageBox.Show("Ok");
-            else
-            {
-                for (int i = 0; i < (a as List<String>).Count; i++)
-                    MessageBox.Show((a as List<String>)[i]);
-            }
-
-            List<Page> pages = new List<Page> { new InfoPage(), new Main() };
+            List<Page> pages = new List<Page> { new InfoPage(), new Main(), new OrderByHand(), null, new Mail() };
 
             foreach (var item in stButtons.Children)
             {

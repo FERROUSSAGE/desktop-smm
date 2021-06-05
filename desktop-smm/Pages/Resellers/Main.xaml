@@ -20,26 +20,39 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock 
+
+            <Border 
+                Grid.Column="0"
+                Style="{StaticResource ActiveResellerText}">
+                <TextBlock 
                 Text="Adcore"
                 Uid="0"
-                Grid.Column="0"
                 Style="{StaticResource ResellerText}"/>
-            <TextBlock 
+            </Border>
+            <Border
+                Grid.Column="1"
+                Style="{StaticResource ActiveResellerText}">
+                <TextBlock 
                 Text="Smmok"
                 Uid="1"
-                Grid.Column="1"
                 Style="{StaticResource ResellerText}"/>
-            <TextBlock 
+            </Border>
+            <Border
+                Grid.Column="2"
+                Style="{StaticResource ActiveResellerText}">
+                <TextBlock 
                 Text="Vktarget"
                 Uid="2"
-                Grid.Column="2"
                 Style="{StaticResource ResellerText}"/>
-            <TextBlock 
+            </Border>
+            <Border
+                Grid.Column="3"
+                Style="{StaticResource ActiveResellerText}">
+                <TextBlock 
                 Text="SocialPanel"
                 Uid="3"
-                Grid.Column="3"
                 Style="{StaticResource ResellerText}"/>
+            </Border>
         </Grid>
         <Frame Grid.Row="1" Name="ResellerLoad" NavigationUIVisibility="Hidden"/>
     </Grid>

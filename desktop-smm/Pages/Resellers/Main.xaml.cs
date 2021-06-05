@@ -23,18 +23,18 @@ namespace desktop_smm.Pages.Resellers
         public Main()
         {
             InitializeComponent();
-            List<Page> resellerPages = new List<Page> { new Adcore() };
+            List<Page> resellerPages = new List<Page> { new Adcore(), new Smmok(), new Vktarget(), new Spanel() };
 
             foreach (var item in GridButtons.Children)
             {
-                var button = item as TextBlock;
+                var button = (item as Border).Child as TextBlock;
 
                 button.MouseDown += (s, e) =>
                 {
                     foreach (var j in GridButtons.Children)
-                        (j as TextBlock).Foreground = (Brush)Application.Current.Resources["ColorButtonAccent"];
+                        ((j as Border).Child as TextBlock).Foreground = (Brush)Application.Current.Resources["ColorButtonAccent"];
 
-                    button.Background = (Brush)Application.Current.Resources["ColorTextActive"];
+                    button.Foreground = (Brush)Application.Current.Resources["ColorButtonActive"];
                     ResellerLoad.NavigationService.Navigate(resellerPages[int.Parse(button.Uid)]);
                 };
             }

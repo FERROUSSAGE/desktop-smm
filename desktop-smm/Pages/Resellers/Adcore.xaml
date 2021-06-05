@@ -8,10 +8,12 @@
       d:DesignHeight="400" d:DesignWidth="900"
       Title="Adcore">
 
-    <Grid MaxWidth="441">
+    <Grid 
+        MaxWidth="441"
+        Margin="0 50 0 0">
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="53"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -20,31 +22,35 @@
                 x:Name="tbSmmcraftId"
                 Uid="Название компании"
                 BorderThickness="1"
-                Padding="15 5"
+                Padding="15 10"
                 Margin="0 0 0 7"/>
             <ComboBox
                 x:Name="cbSocialNetwork"
                 Text="Выберите услугу"
+                Uid="Выберите тип"
                 Padding="18 15"
                 BorderThickness="1"
                 Margin="0 7"/>
             <ComboBox
                 x:Name="cbResellerType"
                 Text="Выберите тип"
+                Uid="Выберите тип"
                 Padding="18 15"
                 BorderThickness="1"
-                Margin="0 7"/>
+                Margin="0 7">
+                <ComboBoxItem Content="Выберите услугу!"/>
+            </ComboBox>
             <TextBox
                 x:Name="tbLink"
                 Uid="Ссылка для продвижения"
                 BorderThickness="1"
-                Padding="15 5"
+                Padding="15 10"
                 Margin="0 7"/>
             <TextBox
                 x:Name="tbCountOrdered"
                 Uid="Количество"
                 BorderThickness="1"
-                Padding="15 5"
+                Padding="15 10"
                 Margin="0 7 0 0"/>
         </StackPanel>
 
@@ -58,14 +64,18 @@
             <ComboBox
                 Grid.Column="0"
                 Name="cbPayment"
-                Padding="0 12"
+                Uid="Выберите платежную систему"
+                Padding="4 12 0 12"
                 SelectedIndex="0"
-                BorderThickness="0 0 0 1"
-                MaxWidth="81"/>
+                BorderThickness="1"
+                Width="81"
+                HorizontalAlignment="Left"/>
             <Button
                 x:Name="btnOrder"
+                Click="btnOrder_Click"
                 Grid.Column="1"
                 MaxWidth="142"
+                FontSize="14"
                 Style="{StaticResource BaseButton}"
                 Content="Заказать"/>
             <TextBox
@@ -73,6 +83,7 @@
                 x:Name="tbCost"
                 Uid="Цена заказа"
                 Width="116"
+                HorizontalAlignment="Right"
                 BorderThickness="0 0 0 1"/>
         </Grid>
 

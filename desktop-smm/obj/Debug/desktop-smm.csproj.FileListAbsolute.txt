@@ -51,3 +51,16 @@ C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers
 C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Main.g.cs
 C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Adcore.baml
 C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Main.baml
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\AuthPage.g.cs
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\AuthPage.baml
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\OrderByHand.g.cs
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Smmok.g.cs
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Spanel.g.cs
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Vktarget.g.cs
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\OrderByHand.baml
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Smmok.baml
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Spanel.baml
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers\Vktarget.baml
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Mail.g.cs
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Mail.baml
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\desktop-smm.csprojAssemblyReference.cache

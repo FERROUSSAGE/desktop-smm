@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using desktop_smm.Pages;
+using desktop_smm.Services;
 
 namespace desktop_smm
 {
@@ -24,7 +25,7 @@ namespace desktop_smm
         public MainWindow()
         {
             InitializeComponent();
-            MainLoad.Navigate(new MainContent());
+            MainLoad.Navigate(new AuthPage());
         }
     }
 }

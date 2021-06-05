@@ -51,26 +51,26 @@
                     Content="Ресселеры"
                     Uid="1"
                     Style="{StaticResource BaseButton}"
-                    Margin="0 0 0 15"/>
+                    Margin="0 0 0 15"
+                    Height="69"/>
                 <Button 
                     Content="Заказ вручную"
                     Uid="2"
                     Style="{StaticResource BaseButton}"
-                    Margin="0 15"/>
+                    Margin="0 15"
+                    Height="69"/>
                 <Button 
                     Content="Список заказов"
                     Uid="3"
                     Style="{StaticResource BaseButton}"
-                    Margin="0 15"/>
+                    Margin="0 15"
+                    Height="69"/>
                 <Button 
                     Content="Почта"
                     Uid="4"
                     Style="{StaticResource BaseButton}"
-                    Margin="0 15 0 0"/>
-
-                <TextBox x:Name="tb1" Text="Рататуй" Uid="Введите имя"/>
-
-                <TextBox x:Name="tb2" Text="1244" Uid="Введите пароль"/>
+                    Margin="0 15 0 0"
+                    Height="69"/>
             </StackPanel>
 
             <Frame 

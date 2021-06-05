@@ -1,0 +1,96 @@
+﻿<Page x:Class="desktop_smm.Pages.Mail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:desktop_smm.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Mail">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="89"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border 
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource ActiveResellerText}">
+                    <TextBlock 
+                        Text="Конец рабочего дня"
+                        Uid="0"
+                        Style="{StaticResource MailText}"/>
+                </Border>
+                <Border 
+                    Grid.Column="1"
+                    Style="{StaticResource ActiveResellerText}"
+                    HorizontalAlignment="Left"
+                    Margin="-100 0 0 0">
+                    <TextBlock 
+                        Text="Некорректный заказ"
+                        Uid="1"
+                        Style="{StaticResource MailText}"/>
+                </Border>
+            </Grid>
+        </StackPanel>
+        <StackPanel 
+            Grid.Row="1"
+            Grid.Column="1">
+            <StackPanel 
+                Width="457"
+                HorizontalAlignment="Left">
+                <TextBox
+                    x:Name="tbMailTo"
+                    Uid="Кому отправить письмо"
+                    BorderThickness="1"
+                    Padding="30 20"
+                    Margin="0 0 0 8"/>
+                <TextBox
+                    x:Name="tbCaption"
+                    Uid="Заголовок письма"
+                    BorderThickness="1"
+                    Padding="30 20"
+                    Margin="0 8 0 8"/>
+            </StackPanel>
+
+            <TextBox 
+                x:Name="tbHtml"
+                Uid="Введите текст"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                TextWrapping="Wrap"
+                Width="646"
+                HorizontalAlignment="Left"
+                Padding="30 20"
+                MaxHeight="250"
+                Margin="0 8 0 8"/>
+
+        </StackPanel>
+
+        <Button
+            Grid.Row="2"
+            Grid.Column="1"
+            x:Name="btnSendMail"
+            Content="Отправить"
+            Height="58"
+            Width="172"
+            HorizontalAlignment="Left"
+            Style="{StaticResource BaseButton}"/>
+
+    </Grid>
+</Page>

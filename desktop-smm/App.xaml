@@ -34,9 +34,9 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding Background}"
                                 BorderThickness="1"
-                                CornerRadius="20"
+                                CornerRadius="14"
                                 MaxWidth="232"
-                                Height="69">
+                                Height="{TemplateBinding Height}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
@@ -123,8 +123,6 @@
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="Foreground" Value="{StaticResource ColorButtonAccent}"/>
                 <Setter Property="TextAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
             </Style.Setters>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -133,17 +131,38 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="TextBlock" x:Key="MailText" BasedOn="{StaticResource ResellerText}">
+            <Setter Property="Foreground" Value="#CCCCCC"/>
+        </Style>
         
+        <Style TargetType="Border" x:Key="ActiveResellerText">
+            <Setter Property="Padding" Value="0 0 0 5"/>
+            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#BA7EF4"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ActiveMailText" BasedOn="{StaticResource ActiveResellerText}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+
         <Style TargetType="TextBox">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border 
+                        <Border
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
+                            MaxHeight="{TemplateBinding MaxHeight}"
                             MinWidth="110"
-                            CornerRadius="10"
-                            Padding="{TemplateBinding Padding}">
+                            CornerRadius="10">
 
                             <Grid Margin="5">
                                 <ScrollViewer
@@ -161,7 +180,8 @@
                                     Visibility="Collapsed"
                                     FontFamily="{StaticResource MullerLight}"
                                     FontWeight="Light"
-                                    FontSize="14">
+                                    FontSize="14"
+                                    Padding="{TemplateBinding Padding}">
                                 </TextBlock>
                             </Grid>
                         </Border>
@@ -176,19 +196,20 @@
         </Style>
 
         <Style TargetType="CheckBox">
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
                         <StackPanel Orientation="Horizontal">
                             <Border
                                 x:Name="checkboxBorder"
-                                BorderThickness="3"
-                                CornerRadius="8"
-                                Width="30"
-                                Height="30"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                Width="18"
+                                Height="18"
                                 Background="Transparent"
                                 BorderBrush="#3E5398">
-                                <Image x:Name="checkboxImage" Height="15" Width="15"/>
+                                <Image x:Name="checkboxImage" Height="10" Width="10"/>
                             </Border>
                             <ContentPresenter
                                 HorizontalAlignment="Left"
@@ -306,7 +327,7 @@
                                     <Grid
                                         Name="DropDown"
                                         Width="{TemplateBinding ActualWidth}"
-                                        MinHeight="100"
+                                        MinHeight="10"
                                         MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                         <Border
                                             CornerRadius="8"
