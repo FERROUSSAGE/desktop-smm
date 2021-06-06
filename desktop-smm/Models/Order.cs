@@ -14,10 +14,10 @@ namespace desktop_smm.Models
         public int? idProject { get; set; }
         public string socialNetwork { get; set; }
         public string link { get; set; }
-        public int cost { get; set; }
-        public double spend { get; set; }
-        public int countOrdered { get; set; }
-        public int countViews { get; set; }
+        public int? cost { get; set; }
+        public double? spend { get; set; }
+        public int? countOrdered { get; set; }
+        public int? countViews { get; set; }
         public string payment { get; set; }
         public DateTime dateCreate { get; set; }
         public string date { get; set; }

@@ -2,16 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using desktop_smm.Models;
 using desktop_smm.Services;
 
 namespace desktop_smm.Pages
@@ -26,14 +19,7 @@ namespace desktop_smm.Pages
             InitializeComponent();
         }
 
-        async void FetchData()
-        {
-            await Store.FetchOrders();
-            await Store.FetchTypes();
-            await Store.FetchResellers();
-        }
-
-        private void btnAuth_Click(object sender, RoutedEventArgs e)
+        private async void btnAuth_Click(object sender, RoutedEventArgs e)
         {
             var valid = Validator.Check(new Dictionary<char[], string>
             {
@@ -45,13 +31,21 @@ namespace desktop_smm.Pages
             if (validName.StartsWith("List")) Validator.ShowErrors(valid as List<string>);
             else
             {
-                this.NavigationService.Navigate(new MainContent());
-            }
-        }
+                var request = new Request("user", "login", new Dictionary<string, string>
+                {
+                    {"login", tbLogin.Text},
+                    {"password", tbPassword.Text}
+                });
+                var response = await request.PostAPIData<RootUser>();
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            FetchData();
+                if (response.status)
+                {
+                    Store.user = response.users.FirstOrDefault();
+                    this.NavigationService.Navigate(new MainContent());
+                }
+                else MessageBox.Show(response.err.message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
     }
 }

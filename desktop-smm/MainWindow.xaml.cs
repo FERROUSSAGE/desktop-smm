@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using desktop_smm.Pages;
 using desktop_smm.Services;
 
@@ -26,6 +15,25 @@ namespace desktop_smm
         {
             InitializeComponent();
             MainLoad.Navigate(new AuthPage());
+        }
+
+        async void FetchData()
+        {
+            try
+            {
+                await Store.FetchOrders();
+                await Store.FetchTypes();
+                await Store.FetchResellers();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Нет подключение к серверу!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            FetchData();
         }
     }
 }

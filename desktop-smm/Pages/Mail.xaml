@@ -23,14 +23,16 @@
             Grid.Row="0"
             Grid.Column="1"
             VerticalAlignment="Center">
-            <Grid>
+            <Grid x:Name="gridButtons">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border 
+                    x:Name="endDayPattern"
                     Grid.Column="0"
                     HorizontalAlignment="Left"
+                    Tag=""
                     Style="{StaticResource ActiveResellerText}">
                     <TextBlock 
                         Text="Конец рабочего дня"
@@ -38,6 +40,7 @@
                         Style="{StaticResource MailText}"/>
                 </Border>
                 <Border 
+                    x:Name="incorrectPattern"
                     Grid.Column="1"
                     Style="{StaticResource ActiveResellerText}"
                     HorizontalAlignment="Left"
@@ -57,6 +60,9 @@
                 HorizontalAlignment="Left">
                 <TextBox
                     x:Name="tbMailTo"
+                    Style="{StaticResource Placeholder}"
+                    Background="Transparent"
+                    Foreground="{StaticResource ColorText}"
                     Uid="Кому отправить письмо"
                     BorderThickness="1"
                     Padding="30 20"
@@ -64,6 +70,9 @@
                 <TextBox
                     x:Name="tbCaption"
                     Uid="Заголовок письма"
+                    Style="{StaticResource Placeholder}"
+                    Background="Transparent"
+                    Foreground="{StaticResource ColorText}"
                     BorderThickness="1"
                     Padding="30 20"
                     Margin="0 8 0 8"/>
@@ -72,6 +81,9 @@
             <TextBox 
                 x:Name="tbHtml"
                 Uid="Введите текст"
+                Style="{StaticResource Placeholder}"
+                Background="Transparent"
+                Foreground="{StaticResource ColorText}"
                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                 TextWrapping="Wrap"
                 Width="646"

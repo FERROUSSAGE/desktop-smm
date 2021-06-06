@@ -16,10 +16,18 @@ namespace desktop_smm.Models
         public int roleId { get; set; }
     }
 
+    public class Err
+    {
+        public int status { get; set; }
+        public string message { get; set; }
+    }
+
     public class RootUser
     {
         public bool status { get; set; }
         [JsonProperty("response")]
         public List<User> users { get; set; }
+        public Err err { get; set; }
     }
+
 }

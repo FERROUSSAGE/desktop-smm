@@ -22,7 +22,16 @@ namespace desktop_smm.Services
 
             switch (mainParam)
             {
+                case "orders":
+                    this.URL += $"order?page={method}";
+                    break;
                 case "order":
+                    this.URL += $"order/{method}";
+                    break;
+                case "checkOrder":
+                    this.URL += $"order/{method}";
+                    break;
+                case "orderByText":
                     this.URL += $"order/{method}";
                     break;
                 case "type":
@@ -49,22 +58,41 @@ namespace desktop_smm.Services
                 case "spanel":
                     this.URL += $"api/spanel/{method}";
                     break;
+                case "user":
+                    this.URL += $"user/{method}";
+                    break;
             }
         }
 
         public async Task<T> PostAPIData<T>()
         {
-            using (HttpContent content = new FormUrlEncodedContent(POSTDATA))
+            var json = JsonConvert.SerializeObject(POSTDATA);
+
+            using (HttpResponseMessage responseMessage = await client.PostAsync(URL, new StringContent(json, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
-                POSTDATA.Clear();
-                using (HttpResponseMessage responseMessage = await client.PostAsync(URL, content).ConfigureAwait(false))
-                {
-                    string jsonText = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    return JsonConvert.DeserializeObject<T>(jsonText);
-                }
+                string jsonText = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return JsonConvert.DeserializeObject<T>(jsonText);
             }
         }
 
+        public async Task<T> PutAPIData<T>()
+        {
+            var json = JsonConvert.SerializeObject(POSTDATA);
+
+            using (HttpResponseMessage responseMessage = await client.PutAsync(URL, new StringContent(json, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                string jsonText = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return JsonConvert.DeserializeObject<T>(jsonText);
+            }
+        }
+        public async Task<T> DeleteAPIData<T>()
+        {
+            using (HttpResponseMessage responseMessage = await client.DeleteAsync(URL).ConfigureAwait(false))
+            {
+                string jsonText = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return JsonConvert.DeserializeObject<T>(jsonText);
+            }
+        }
         public async Task<T> GetApiData<T>()
         {
             using (HttpResponseMessage responseMessage = await client.GetAsync(URL).ConfigureAwait(false))

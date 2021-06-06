@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using desktop_smm.Models;
+using desktop_smm.Models.Resellers;
 using desktop_smm.Services;
 
 namespace desktop_smm.Pages.Resellers
@@ -34,55 +35,74 @@ namespace desktop_smm.Pages.Resellers
                 cbResellerType.Items.Clear();
                 foreach (var type in Helper.SetItemsForCombobox(types))
                     if(type.name == cbSocialNetwork.SelectedItem.ToString())
-                        cbResellerType.Items.Add(type.name + " | " + type.description + " | " + type.type);
+                        cbResellerType.Items.Add($"{type.name} | {type.description} | {type.type}");
             };
      
             cbPayment.ItemsSource = Helper.SetPaymentsForCombobox();
         }
 
-        //bool Validate(Dictionary<Control, string> array)
-        //{
-        //    //var response = Validator.Check(array);
-        //    //if(!(response is bool))
-        //    //    for (int i = 0; i < (response as List<String>).Count; i++)
-        //    //    {
-        //    //        MessageBox.Show((response as List<String>)[i]);
-        //    //        return false;
-        //    //    }
-        //    //else if((response is bool) == false)
-        //    //{
-        //    //    return false;
-        //    //}
-        //    //return true;
-        //}
-
-        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        private async void btnOrder_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //if (Validate(new Dictionary<Control, string>
-                //{
-                //    {tbCost, "Numbers"}, {tbCountOrdered, "Numbers"}, {tbLink, "Text"},
-                //    {tbSmmcraftId, "Numbers"}, {cbPayment, "Text"}, {cbResellerType, "Numbers"}, {cbSocialNetwork, "Text"}
-                //}))
-                //{
-                //    //if (Store.orders != null)
-                //    //{
-                //    //    var type = Store.resellerTypes.FirstOrDefault(x => x.type == cbResellerType.Tag.ToString());
+                var valid = Validator.Check(new Dictionary<char[], string>
+                {
+                    {tbSmmcraftId.Text.ToArray(), "Number"},
+                    {tbLink.Text.ToArray(), "Link"},
+                    {tbCountOrdered.Text.ToArray(), "Number"},
+                    {tbCost.Text.ToArray(), "Number"},
+                    {cbPayment.SelectedItem.ToString().ToArray(), "Text"},
+                    {cbResellerType.SelectedItem.ToString().Split('|')[2].ToArray(), "Number"},
+                    {cbSocialNetwork.SelectedItem.ToString().ToArray(), "Text"}
+                });
 
-                //    //var requestDictionary = new Dictionary<string, string>();
-                //    //requestDictionary.Add("resellerType", cbResellerType.Tag.ToString());
-                //    //requestDictionary.Add("link", tbLink.Text);
-                //    //requestDictionary.Add("countOrdered", tbCountOrdered.Text);
-                //    //requestDictionary.Add("type", type?.price.ToString());
+                var validName = valid.GetType().Name;
+                if (validName.StartsWith("List")) Validator.ShowErrors(valid as List<string>);
+                else
+                {
+                    var type = Store.resellerTypes.FirstOrDefault(x => x.type == cbResellerType.SelectedItem.ToString().Split('|')[2].Trim());
 
-                //    //    //var request = new Request(requestDictionary, "adcore", "create");
-                //    //    MessageBox.Show("Клик");
-                //    //}
-                //    //else btnOrder_Click(null, null);
-                //}
+                    var checkOrder = new Request("checkOrder", $"check/{tbSmmcraftId.Text}");
+                    var responseCheck = await checkOrder.GetApiData<RootOrder>();
+                    if (responseCheck.status)
+                    {
+                        var requestAdcore = new Request("adcore", "create", new Dictionary<string, string>
+                        {
+                            {"link", tbLink.Text},
+                            {"countOrdered", tbCountOrdered.Text},
+                            {"price", type.price.ToString()},
+                            {"type", type.type}
+                        });
+                        var responseAdcore = await requestAdcore.PostAPIData<RootAdcore>();
+                        if (responseAdcore.status)
+                        {
+                            var requestOrder = new Request("order", "", new Dictionary<string, string>
+                            {
+                                {"idSmmcraft", tbSmmcraftId.Text},
+                                {"idProject", responseAdcore.response.idProject.ToString()},
+                                {"socialNetwork", cbSocialNetwork.SelectedItem.ToString()},
+                                {"link", tbLink.Text},
+                                {"cost", tbCost.Text},
+                                {"spend", (type.price * int.Parse(tbCountOrdered.Text)).ToString()},
+                                {"countOrdered", tbCountOrdered.Text},
+                                {"payment", cbPayment.SelectedItem.ToString()},
+                                {"resellerId", type.resellerId.ToString()},
+                                {"resellerTypeId", type.id.ToString()},
+                                {"userId", Store.user.id.ToString()}
+                            });
+                            var responseOrder = await requestOrder.PostAPIData<RootOrder>();
+                            if (responseOrder.status)
+                            {
+                                MessageBox.Show("Заказ успешно создан!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else MessageBox.Show("Произошла ошибка при создании заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else MessageBox.Show(responseAdcore.response.msg, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else MessageBox.Show("Заказ с таким -ID- существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            catch (Exception) {}
+            catch (Exception) { MessageBox.Show("Произошла ошибка!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }

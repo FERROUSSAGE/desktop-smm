@@ -61,13 +61,13 @@
                     Height="69"/>
                 <Button 
                     Content="Список заказов"
-                    Uid="3"
+                    Tag="orders"
                     Style="{StaticResource BaseButton}"
                     Margin="0 15"
                     Height="69"/>
                 <Button 
                     Content="Почта"
-                    Uid="4"
+                    Uid="3"
                     Style="{StaticResource BaseButton}"
                     Margin="0 15 0 0"
                     Height="69"/>

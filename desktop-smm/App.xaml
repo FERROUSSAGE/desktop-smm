@@ -17,6 +17,8 @@
             <SolidColorBrush x:Key="ColorText" Color="#666666"/>
             <SolidColorBrush x:Key="ColorTextAccent" Color="#9F9F9F"/>
             <SolidColorBrush x:Key="ColorBorder" Color="#B5B4B4"/>
+            <SolidColorBrush x:Key="ColorMailText" Color="#CCCCCC"/>
+            <SolidColorBrush x:Key="ColorDataGrid" Color="#878787"/>
         <!--- Colors -->
         
         <Style TargetType="Button" x:Key="BaseButton">
@@ -33,6 +35,7 @@
                             <Border 
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}"
                                 BorderThickness="1"
                                 CornerRadius="14"
                                 MaxWidth="232"
@@ -55,6 +58,40 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Foreground" Value="#787878"/>
+        </Style>
+
+        <Style x:Key="ButtonDelete" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Background" Value="#F3646D"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Panel.ZIndex" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding Background}"
+                                Padding="44 20"
+                                BorderThickness="1"
+                                CornerRadius="14"
+                                MaxWidth="232"
+                                Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <Style BasedOn="{StaticResource BaseButton}" TargetType="Button" x:Key="ButtonInfo">
             <Style.Setters>
                 <Setter Property="Background" Value="White"/>
@@ -133,9 +170,19 @@
         </Style>
 
         <Style TargetType="TextBlock" x:Key="MailText" BasedOn="{StaticResource ResellerText}">
-            <Setter Property="Foreground" Value="#CCCCCC"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorMailText}"/>
         </Style>
-        
+
+        <Style TargetType="TextBlock" x:Key="PagginationText" BasedOn="{StaticResource BaseText}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource ColorButtonActive}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="Border" x:Key="ActiveResellerText">
             <Setter Property="Padding" Value="0 0 0 5"/>
             <Setter Property="BorderThickness" Value="0 0 0 2"/>
@@ -153,7 +200,7 @@
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
 
-        <Style TargetType="TextBox">
+        <Style TargetType="TextBox" x:Key="Placeholder">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
@@ -173,8 +220,8 @@
                                     x:Name="hint"
                                     VerticalAlignment="Center"
                                     TextAlignment="Left"
-                                    Background="Transparent"
-                                    Foreground="{StaticResource ColorText}"
+                                    Background="{TemplateBinding Background}"
+                                    Foreground="{TemplateBinding Foreground}"
                                     IsHitTestVisible="False"
                                     Text="{TemplateBinding Uid}"
                                     Visibility="Collapsed"
@@ -195,6 +242,12 @@
             </Setter>
         </Style>
 
+        <Style x:Key="TbSearch" TargetType="TextBox" BasedOn="{StaticResource Placeholder}">
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        
         <Style TargetType="CheckBox">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -335,10 +388,10 @@
                                             Background="White"
                                             BorderThickness="1"
                                             BorderBrush="#F6F6F6"/>
-                                            <ScrollViewer
-                                                VerticalScrollBarVisibility="Hidden">
-                                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
-                                            </ScrollViewer>
+                                        <ScrollViewer
+                                            VerticalScrollBarVisibility="Hidden">
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
                                     </Grid>
                                 </Popup>
                             </Grid>
@@ -346,8 +399,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-            </Style.Triggers>
         </Style>
         <Style x:Key="theComboBoxItem" TargetType="{x:Type ComboBoxItem}">
             <Setter Property="FontSize" Value="13" />
@@ -378,5 +429,115 @@
             </Setter>
         </Style>
 
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Foreground" Value="{StaticResource ColorDataGrid}" />
+            <Setter Property="FontFamily" Value="{StaticResource MullerLight}" />
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border 
+                            BorderThickness="0 0 0 1" 
+                            BorderBrush="{StaticResource ColorDataGrid}" 
+                            Background="Transparent"
+                            Padding="7 0 0 0">
+                            <TextBlock 
+                                x:Name="ContentHeader" 
+                                Text="{TemplateBinding Content}"
+                                Padding="5" 
+                                TextAlignment="Left" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="ListViewItemBase" TargetType="{x:Type ListViewItem}">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="{StaticResource MullerLight}"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ColorDataGrid}"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="Padding" Value="10 15 10 15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorDataGrid}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border 
+                            x:Name="borderRow"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                            <Border
+                                Margin="0 5">
+                                <GridViewRowPresenter 
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="borderRow" Property="Background" Value="{StaticResource ColorButtonActive}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="borderRow" Property="Background" Value="{StaticResource ColorButtonActive}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ColorDataGrid}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridRow}">
+                        <Border
+                            x:Name="DGR_Border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True">
+                            <SelectiveScrollingGrid>
+                                <SelectiveScrollingGrid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </SelectiveScrollingGrid.RowDefinitions>
+                                <DataGridCellsPresenter
+                                    Grid.Column="1"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                            </SelectiveScrollingGrid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="AlternationIndex" Value="2" >
+                    <Setter Property="Background" Value="{StaticResource ColorDataGrid}" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource ColorButtonActive}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource ColorButtonActive}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
     </Application.Resources>
 </Application>

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using desktop_smm.Pages.Resellers;
 using desktop_smm.Pages;
+using desktop_smm.Windows;
 using System.ComponentModel;
 
 namespace desktop_smm.Pages
@@ -28,7 +29,7 @@ namespace desktop_smm.Pages
         {
             InitializeComponent();
 
-            List<Page> pages = new List<Page> { new InfoPage(), new Main(), new OrderByHand(), null, new Mail() };
+            List<Page> pages = new List<Page> { new InfoPage(), new Main(), new OrderByHand(), new Mail() };
 
             foreach (var item in stButtons.Children)
             {
@@ -40,7 +41,8 @@ namespace desktop_smm.Pages
                         (j as Button).Background = (Brush)Application.Current.Resources["ColorButtonAccent"];
 
                     button.Background = (Brush)Application.Current.Resources["ColorButtonActive"];
-                    MainContentLoad.NavigationService.Navigate(pages[int.Parse(button.Uid)]);
+                    if (button.Tag != null && button.Tag.ToString() == "orders") new OrderListModal().Show();
+                    else MainContentLoad.NavigationService.Navigate(pages[int.Parse(button.Uid)]);
                 };
             }
 

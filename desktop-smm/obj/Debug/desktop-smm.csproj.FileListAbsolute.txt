@@ -64,3 +64,5 @@ C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Resellers
 C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Mail.g.cs
 C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Pages\Mail.baml
 C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\desktop-smm.csprojAssemblyReference.cache
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Windows\OrderListModal.g.cs
+C:\Users\Илья\source\repos\desktop-smm\desktop-smm\obj\Debug\Windows\OrderListModal.baml

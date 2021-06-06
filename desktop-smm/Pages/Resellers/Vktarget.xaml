@@ -21,6 +21,9 @@
             <TextBox
                 x:Name="tbSmmcraftId"
                 Uid="Название компании"
+                Style="{StaticResource Placeholder}"
+                Foreground="{StaticResource ColorText}"
+                Background="Transparent"
                 BorderThickness="1"
                 Padding="15 10"
                 Margin="0 0 0 7"/>
@@ -43,12 +46,18 @@
             <TextBox
                 x:Name="tbLink"
                 Uid="Ссылка для продвижения"
+                Style="{StaticResource Placeholder}"
+                Foreground="{StaticResource ColorText}"
+                Background="Transparent"
                 BorderThickness="1"
                 Padding="15 10"
                 Margin="0 7"/>
             <TextBox
                 x:Name="tbCountOrdered"
                 Uid="Количество"
+                Style="{StaticResource Placeholder}"
+                Foreground="{StaticResource ColorText}"
+                Background="Transparent"
                 BorderThickness="1"
                 Padding="15 10"
                 Margin="0 7 0 0"/>
@@ -82,6 +91,9 @@
                 Grid.Column="2"
                 x:Name="tbCost"
                 Uid="Цена заказа"
+                Style="{StaticResource Placeholder}"
+                Foreground="{StaticResource ColorText}"
+                Background="Transparent"
                 Width="116"
                 HorizontalAlignment="Right"
                 BorderThickness="0 0 0 1"/>

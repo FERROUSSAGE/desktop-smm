@@ -13,11 +13,18 @@ namespace desktop_smm.Services
         public static List<ResellerType> resellerTypes = new List<ResellerType>();
         public static List<Reseller> resellers = new List<Reseller>();
 
-        public async static Task FetchOrders()
+        public static User user = null;
+        public static int countPage = 0;
+        public static int lastPage = 0;
+
+        public async static Task FetchOrders(string page = "1")
         {
-            var request = new Request("order", "");
+            var request = new Request("orders", page);
             var result = await request.GetApiData<RootOrder>();
             orders = result.response.orders;
+
+            countPage = result.response.count;
+            lastPage = (int)Math.Ceiling((decimal)result.response.count / 10);
         }
 
         public async static Task FetchTypes()

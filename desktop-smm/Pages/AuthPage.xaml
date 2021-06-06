@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:desktop_smm.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1200"
-      Title="AuthPage" Loaded="Page_Loaded">
+      Title="AuthPage">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,11 +28,17 @@
             <TextBox 
                 x:Name="tbLogin"
                 Uid="Введите логин"
+                Style="{StaticResource Placeholder}"
+                Background="Transparent"
+                Foreground="{StaticResource ColorText}"
                 Padding="29 15" 
                 Margin="0 38 0 7"/>
             <TextBox
                 x:Name="tbPassword"
                 Uid="Введите пароль"
+                Style="{StaticResource Placeholder}"
+                Background="Transparent"
+                Foreground="{StaticResource ColorText}"
                 Padding="29 15"
                 Margin="0 7 0 38"/>
             <Button 

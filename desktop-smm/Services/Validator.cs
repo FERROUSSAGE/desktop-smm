@@ -19,7 +19,8 @@ namespace desktop_smm.Services
             {"Email", @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +  @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$" },
             {"Numbers", "^[0-9]+$"},
             {"Text", "^[А-ЯЁа-яЁ A-Za-z]*$"},
-            {"LoginAndPassword", "^[A-Z-a-z0-9]*$"}
+            {"LoginAndPassword", "^[A-Z-a-z0-9]*$"},
+            {"Link", @"^http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$"}
         };
 
 
@@ -29,7 +30,8 @@ namespace desktop_smm.Services
             {"Numbers", "Был введен не числовой формат данных"},
             {"Text", "Был введен не строковый формат данных"},
             {"Empty", "Была передана пустая строка"},
-            {"LoginAndPassword", "Логин и пароль может содержать только латиницу"}
+            {"LoginAndPassword", "Логин и пароль может содержать только латиницу"},
+            {"Link", "Была веден не формат не в виде ссылки"}
         };
 
         public static bool ValidateFields(string[] fields)
@@ -60,7 +62,7 @@ namespace desktop_smm.Services
                 {
                     if (item.Value == regDic.Key)
                         if (!new Regex(regDic.Value, RegexOptions.IgnoreCase | RegexOptions.Compiled).IsMatch(new string(item.Key)))
-                            errors.Add(patternErrors[regDic.Key]);
+                            errors.Add(patternErrors[regDic.Key] + new string(item.Key));
                 }
             }
 

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Илья\source\repos\desktop-smm\desktop-smm\App.xaml
-11-1582902266
+12694046016
 
-23-277307811
+261491297146
 15-224002665
-MainWindow.xaml;Pages\AuthPage.xaml;Pages\InfoPage.xaml;Pages\Mail.xaml;Pages\MainContent.xaml;Pages\OrderByHand.xaml;Pages\Resellers\Adcore.xaml;Pages\Resellers\Main.xaml;Pages\Resellers\Smmok.xaml;Pages\Resellers\Spanel.xaml;Pages\Resellers\Vktarget.xaml;
+MainWindow.xaml;Pages\AuthPage.xaml;Pages\InfoPage.xaml;Pages\Mail.xaml;Pages\MainContent.xaml;Pages\OrderByHand.xaml;Pages\Resellers\Adcore.xaml;Pages\Resellers\Main.xaml;Pages\Resellers\Smmok.xaml;Pages\Resellers\Spanel.xaml;Pages\Resellers\Vktarget.xaml;Windows\OrderListModal.xaml;
 
 False
 

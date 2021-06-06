@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using desktop_smm.Models;
 
 namespace desktop_smm.Services
@@ -38,6 +37,16 @@ namespace desktop_smm.Services
             return new List<string>
             {
                 "RK", "UP", "WM", "PP", "ИК", "FK"
+            };
+        }
+
+        public static List<string> SetSocialNetworksForCombobox()
+        {
+            return new List<string>
+            {
+                "YouTube", "Instagram", "Вконтакте", "Twitch", "Facebook",
+                "TikTok", "Twitter", "Одноклассники", "Telegram", "Likee",
+                "SoundCloud", "Spotify"
             };
         }
     }
