@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace desktop_smm.Services
@@ -17,30 +18,23 @@ namespace desktop_smm.Services
         private static Dictionary<string, string> regexDictionary = new Dictionary<string, string>()
         {
             {"Email", @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +  @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$" },
-            {"Numbers", "^[0-9]+$"},
+            {"Number", "^[0-9]+$"},
             {"Text", "^[А-ЯЁа-яЁ A-Za-z]*$"},
             {"LoginAndPassword", "^[A-Z-a-z0-9]*$"},
-            {"Link", @"^http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$"}
+            {"Link", @"^http(s)?:\/\/"},
+            {"ComboBox", ""}
         };
 
 
         private static Dictionary<string, string> patternErrors = new Dictionary<string, string>
         {
             {"Email", "Был введен не корректный E-mail"},
-            {"Numbers", "Был введен не числовой формат данных"},
+            {"Number", "Был введен не числовой формат данных"},
             {"Text", "Был введен не строковый формат данных"},
             {"Empty", "Была передана пустая строка"},
             {"LoginAndPassword", "Логин и пароль может содержать только латиницу"},
-            {"Link", "Была веден не формат не в виде ссылки"}
+            {"Link", "Была веден формат не в виде ссылки"},
         };
-
-        public static bool ValidateFields(string[] fields)
-        {
-            foreach(var field in fields)
-                if (String.IsNullOrEmpty(field))
-                    return false;
-            return true;
-        }
 
         public static void ShowErrors(List<string> errors)
         {
@@ -48,24 +42,65 @@ namespace desktop_smm.Services
                 MessageBox.Show(error, "Произошла ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             errors.Clear();
         }
-
-        public static object Check(Dictionary<char[], string> arrays)
+        private static void SelectError(Control control)
         {
-            List<string> fields = new List<string>();
-            foreach (var key in arrays.Keys) fields.Add(new string(key));
+            control.BorderBrush = Brushes.Red;
+            control.Focus();
+        }
 
-            if (!ValidateFields(fields.ToArray())) { errors.Add(patternErrors["Empty"]); return errors; }
+        private static void ResetSelect(Control control) => control.BorderBrush = (Brush)Application.Current.Resources["ColorBorder"];
 
-            foreach (var item in arrays)
+        public static bool ValidateFields(string field)
+        {
+            if (String.IsNullOrEmpty(field))
+                return false;
+            return true;
+        }
+
+        public static object Check(Dictionary<Control, string> arrays)
+        {
+            foreach (var field in arrays)
             {
                 foreach (var regDic in regexDictionary)
                 {
-                    if (item.Value == regDic.Key)
-                        if (!new Regex(regDic.Value, RegexOptions.IgnoreCase | RegexOptions.Compiled).IsMatch(new string(item.Key)))
-                            errors.Add(patternErrors[regDic.Key] + new string(item.Key));
+                    if (field.Value == regDic.Key)
+                    {
+                        var regex = new Regex(regDic.Value, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                        switch (field.Key.GetType().Name)
+                        {
+                            case "TextBox" :
+                                if (!ValidateFields((field.Key as TextBox).Text))
+                                {
+                                    errors.Add($"{patternErrors["Empty"]}\n\nВ поле - {(field.Key as TextBox).Uid}");
+                                    SelectError(field.Key);
+                                    return errors;
+                                }
+                                else
+                                {
+                                    if (!regex.IsMatch((field.Key as TextBox).Text))
+                                    {
+                                        errors.Add($"{patternErrors[regDic.Key]}\n\nВ поле - {field.Key.Uid}");
+                                        SelectError(field.Key);
+                                    }
+                                    else ResetSelect(field.Key);
+                                } 
+                                break;
+                            case "ComboBox":
+                                if((field.Key as ComboBox).SelectedItem == null)
+                                {
+                                    if (!ValidateFields(""))
+                                    {
+                                        errors.Add($"{patternErrors["Empty"]}\n\nВ поле - {(field.Key as ComboBox).Uid}");
+                                        SelectError(field.Key);
+                                        return errors;
+                                    }
+                                }
+                                else ResetSelect(field.Key);
+                                break;
+                        }
+                    }
                 }
             }
-
             if (errors.Count >= 1)
                 return errors;
             else return true;

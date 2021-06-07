@@ -94,13 +94,16 @@
                     Width="29"
                     Height="26"/>
                 <StackPanel
-                    Margin="11 0 0 0">
+                    Margin="11 0 0 0"
+                    x:Name="developerButtons">
                     <TextBlock 
                         Text="@ferroussage"
-                        Style="{StaticResource BaseText}"/>
+                        Tag="https://t.me/ferroussage"
+                        Style="{StaticResource DeveloperButton}"/>
                     <TextBlock 
                         Text="@svpanova_design"
-                        Style="{StaticResource BaseText}"/>
+                        Tag="https://t.me/svpanova_design"
+                        Style="{StaticResource DeveloperButton}"/>
                 </StackPanel>
             </StackPanel>
 

@@ -40,13 +40,15 @@
 
             <Button
                 Grid.Column="1"
+                x:Name="btnUploadOrders"
                 HorizontalAlignment="Right"
                 Content="Выгрузить"
                 Height="60" 
                 Margin="0 0 34 0"
                 Padding="43 20 43 20"
                 Style="{StaticResource SecondaryButton}"
-                Background="White"/>
+                Background="White"
+                Click="btnUploadOrders_Click"/>
         </Grid>
         
         <ListView 
@@ -130,7 +132,8 @@
                         <GridViewColumn Header="Ссылка">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate >
-                                    <TextBlock Text="{Binding link}" />
+                                    <TextBlock 
+                                        Text="{Binding link}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -138,6 +141,27 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate >
                                     <TextBlock Text="{Binding date}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn 
+                            Header="Инфо">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button 
+                                        x:Name="btnInfoOrder"
+                                        Style="{StaticResource BaseButton}"
+                                        Tag="{Binding id}"
+                                        Width="62"
+                                        Height="44"
+                                        Visibility="{Binding isButtonInfoVisible}"
+                                        Click="btnInfoOrder_Click">
+                                        <StackPanel>
+                                            <Rectangle Fill="White" Width="31" Height="1" Margin="0 3" />
+                                            <Rectangle Fill="White" Width="31" Height="1" Margin="0 3" />
+                                            <Rectangle Fill="White" Width="31" Height="1" Margin="0 3" />
+                                        </StackPanel>
+                                    </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

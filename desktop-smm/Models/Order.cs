@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace desktop_smm.Models
 {
@@ -27,6 +28,16 @@ namespace desktop_smm.Models
         public User user { get; set; }
         public Reseller reseller { get; set; }
         public ResellerType reseller_type { get; set; }
+
+        public Visibility isButtonInfoVisible
+        {
+            get
+            {
+                if (idProject == null)
+                    return Visibility.Collapsed;
+                return Visibility.Visible;
+            }
+        }
     }
 
     public class Response

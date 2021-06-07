@@ -59,10 +59,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Reseller.cs" />
     <Compile Include="Models\Resellers\Adcore.cs" />
+    <Compile Include="Models\Resellers\ResellerInfo.cs" />
+    <Compile Include="Models\Resellers\Smmok.cs" />
+    <Compile Include="Models\Resellers\Spanel.cs" />
+    <Compile Include="Models\Resellers\Vktarget.cs" />
     <Compile Include="Models\ResellerType.cs" />
+    <Compile Include="Models\Spreadsheet.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Pages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
@@ -87,6 +93,9 @@
     <Compile Include="Services\Request.cs" />
     <Compile Include="Services\Store.cs" />
     <Compile Include="Services\Validator.cs" />
+    <Compile Include="Windows\InfoResellerModal.xaml.cs">
+      <DependentUpon>InfoResellerModal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\OrderListModal.xaml.cs">
       <DependentUpon>OrderListModal.xaml</DependentUpon>
     </Compile>
@@ -139,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Resellers\Vktarget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\InfoResellerModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,8 +218,10 @@
     <Resource Include="Resources\Icons\check.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\info-img.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Images\background_auth.jpg" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

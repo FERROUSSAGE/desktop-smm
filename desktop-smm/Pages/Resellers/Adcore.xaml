@@ -30,8 +30,9 @@
             <ComboBox
                 x:Name="cbSocialNetwork"
                 Text="Выберите услугу"
-                Uid="Выберите тип"
+                Uid="Выберите услугу"
                 Padding="18 15"
+                BorderBrush="{StaticResource ColorBorder}"
                 BorderThickness="1"
                 Margin="0 7"/>
             <ComboBox
@@ -39,6 +40,7 @@
                 Text="Выберите тип"
                 Uid="Выберите тип"
                 Padding="18 15"
+                BorderBrush="{StaticResource ColorBorder}"
                 BorderThickness="1"
                 Margin="0 7">
                 <ComboBoxItem Content="Выберите услугу!"/>
@@ -76,6 +78,7 @@
                 Uid="Выберите платежную систему"
                 Padding="4 12 0 12"
                 SelectedIndex="0"
+                BorderBrush="{StaticResource ColorBorder}"
                 BorderThickness="1"
                 Width="81"
                 HorizontalAlignment="Left"/>
@@ -103,7 +106,9 @@
             Grid.Row="2"
             HorizontalAlignment="Center"
             Margin="0 27 0 0">
-            <CheckBox Content="Не сохранять"/>
+            <CheckBox 
+                x:Name="checkDontSave"
+                Content="Не сохранять"/>
         </StackPanel>
     </Grid>
 </Page>

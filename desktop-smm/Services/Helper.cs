@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 using desktop_smm.Models;
 
 namespace desktop_smm.Services
@@ -48,6 +49,19 @@ namespace desktop_smm.Services
                 "TikTok", "Twitter", "Одноклассники", "Telegram", "Likee",
                 "SoundCloud", "Spotify"
             };
+        }
+
+        public static string Rounded(double digit) => string.Join(".", Math.Round(digit, 2).ToString().Split(','));
+
+        public static void ClearFields(Control[] controls)
+        {
+            foreach (var control in controls)
+            {
+                if (control.GetType().Name == "TextBox")
+                    (control as TextBox).Text = string.Empty;
+                if (control.GetType().Name == "ComboBox")
+                    (control as ComboBox).Text = (control as ComboBox).Uid;
+            }
         }
     }
 }

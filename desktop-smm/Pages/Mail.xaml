@@ -98,6 +98,7 @@
             Grid.Row="2"
             Grid.Column="1"
             x:Name="btnSendMail"
+            Click="btnSendMail_Click"
             Content="Отправить"
             Height="58"
             Width="172"

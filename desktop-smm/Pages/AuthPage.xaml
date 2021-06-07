@@ -28,6 +28,7 @@
             <TextBox 
                 x:Name="tbLogin"
                 Uid="Введите логин"
+                Text="ferroussage"
                 Style="{StaticResource Placeholder}"
                 Background="Transparent"
                 Foreground="{StaticResource ColorText}"
@@ -36,6 +37,7 @@
             <TextBox
                 x:Name="tbPassword"
                 Uid="Введите пароль"
+                Text="1234"
                 Style="{StaticResource Placeholder}"
                 Background="Transparent"
                 Foreground="{StaticResource ColorText}"

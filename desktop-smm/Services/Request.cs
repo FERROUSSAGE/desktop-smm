@@ -41,10 +41,10 @@ namespace desktop_smm.Services
                     this.URL += $"reseller/{method}";
                     break;
                 case "spreadsheet":
-                    this.URL += $"google/spreadsheet/{method}";
+                    this.URL += $"google/spreadsheet";
                     break;
                 case "nodemailer":
-                    this.URL += $"google/nodemailer/{method}";
+                    this.URL += $"google/nodemailer";
                     break;
                 case "adcore":
                     this.URL += $"api/adcore/{method}";

@@ -16,6 +16,7 @@ using desktop_smm.Pages.Resellers;
 using desktop_smm.Pages;
 using desktop_smm.Windows;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace desktop_smm.Pages
 {
@@ -45,6 +46,8 @@ namespace desktop_smm.Pages
                     else MainContentLoad.NavigationService.Navigate(pages[int.Parse(button.Uid)]);
                 };
             }
+
+            foreach(var item in developerButtons.Children) ((TextBlock)item).MouseDown += (s, e) => Process.Start(((TextBlock)item).Tag.ToString());
 
             MainContentLoad.NavigationService.Navigate(pages[0]);
         }

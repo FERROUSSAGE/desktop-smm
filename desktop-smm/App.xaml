@@ -46,6 +46,9 @@
                                 <Trigger Property="IsPressed" Value="True">
                                     <Setter Property="Background" Value="{StaticResource ColorButtonActive}"/>
                                 </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#C4C4C4"/>
+                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -65,7 +68,6 @@
         <Style x:Key="ButtonDelete" TargetType="Button" BasedOn="{StaticResource BaseButton}">
             <Setter Property="Background" Value="#F3646D"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Panel.ZIndex" Value="20"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -148,7 +150,12 @@
             <Setter Property="FontWeight" Value="Light"/>
         </Style>
 
-        <Style TargetType="TextBlock" x:Key="InfoButtonText">
+        <Style TargetType="TextBlock" x:Key="DeveloperButton" BasedOn="{StaticResource BaseText}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="0 3"/>
+        </Style>
+
+            <Style TargetType="TextBlock" x:Key="InfoButtonText">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -324,7 +331,6 @@
         </ControlTemplate>
 
         <Style TargetType="{x:Type ComboBox}">
-            <Setter Property="BorderBrush" Value="{StaticResource ColorBorder}" />
             <Setter Property="Foreground" Value="{StaticResource ColorText}"/>
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -338,7 +344,7 @@
                     <ControlTemplate TargetType="ComboBox">
                         <Border
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{StaticResource ColorBorder}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="10"
                             Padding="{TemplateBinding Padding}"
                             Width="{TemplateBinding Width}">

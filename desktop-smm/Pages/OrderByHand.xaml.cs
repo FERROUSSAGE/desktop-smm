@@ -33,13 +33,15 @@ namespace desktop_smm.Pages
         {
             try
             {
-                var valid = Validator.Check(new Dictionary<char[], string>
+                btnOrder.IsEnabled = false;
+
+                var valid = Validator.Check(new Dictionary<Control, string>
                 {
-                    {tbSmmcraftId.Text.ToArray(), "Number"},
-                    {tbCost.Text.ToArray(), "Number"},
-                    {tbSpend.Text.ToArray(), "Number"},
-                    {cbPayment.SelectedItem?.ToString()?.ToArray(), "Text"},
-                    {cbSocialNetwork.SelectedItem?.ToString()?.ToArray(), "Text"}
+                    {tbSmmcraftId, "Number"},
+                    {tbCost, "Number"},
+                    {tbSpend, "Number"},
+                    {cbPayment, "ComboBox"},
+                    {cbSocialNetwork, "ComboBox"}
                 });
 
                 var validName = valid.GetType().Name;
@@ -51,6 +53,7 @@ namespace desktop_smm.Pages
                         {"idSmmcraft", tbSmmcraftId.Text},
                         {"socialNetwork", cbSocialNetwork.SelectedItem.ToString()},
                         {"cost", tbCost.Text},
+                        {"spend", tbSpend.Text},
                         {"countViews", tbCountViews.Text},
                         {"payment", cbPayment.SelectedItem.ToString()},
                         {"userId", Store.user.id.ToString()}
@@ -60,11 +63,17 @@ namespace desktop_smm.Pages
                     if (response.status)
                     {
                         MessageBox.Show("Заказ успешно добавлен!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Helper.ClearFields(new Control[]
+                        {
+                            tbSmmcraftId,cbPayment, cbSocialNetwork,
+                            cbSocialNetwork, tbSpend
+                        });
                     }
                     else MessageBox.Show("Произошла ошибка при добавлении заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception){ MessageBox.Show("Произошла ошибка!\nВозможно, вы не заполнили поля ввода!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+            finally { btnOrder.IsEnabled = true; }
         }
     }
 }

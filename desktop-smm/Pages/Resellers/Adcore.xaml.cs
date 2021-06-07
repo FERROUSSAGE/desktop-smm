@@ -33,9 +33,9 @@ namespace desktop_smm.Pages.Resellers
             cbSocialNetwork.SelectionChanged += (s, e) =>
             {
                 cbResellerType.Items.Clear();
-                foreach (var type in Helper.SetItemsForCombobox(types))
-                    if(type.name == cbSocialNetwork.SelectedItem.ToString())
-                        cbResellerType.Items.Add($"{type.name} | {type.description} | {type.type}");
+                    foreach (var type in Helper.SetItemsForCombobox(types))
+                        if (cbSocialNetwork.SelectedItem != null && type.name == cbSocialNetwork.SelectedItem.ToString())
+                            cbResellerType.Items.Add($"{type.name} | {type.description} | {type.type}");
             };
      
             cbPayment.ItemsSource = Helper.SetPaymentsForCombobox();
@@ -45,16 +45,33 @@ namespace desktop_smm.Pages.Resellers
         {
             try
             {
-                var valid = Validator.Check(new Dictionary<char[], string>
+                btnOrder.IsEnabled = true;
+                
+                object valid = null;
+
+                if(checkDontSave.IsChecked == false)
                 {
-                    {tbSmmcraftId.Text.ToArray(), "Number"},
-                    {tbLink.Text.ToArray(), "Link"},
-                    {tbCountOrdered.Text.ToArray(), "Number"},
-                    {tbCost.Text.ToArray(), "Number"},
-                    {cbPayment.SelectedItem.ToString().ToArray(), "Text"},
-                    {cbResellerType.SelectedItem.ToString().Split('|')[2].ToArray(), "Number"},
-                    {cbSocialNetwork.SelectedItem.ToString().ToArray(), "Text"}
-                });
+                    valid = Validator.Check(new Dictionary<Control, string>
+                    {
+                        {tbSmmcraftId, "Number"},
+                        {tbLink, "Link"},
+                        {tbCountOrdered, "Number"},
+                        {tbCost, "Number"},
+                        {cbPayment, "ComboBox"},
+                        {cbSocialNetwork, "ComboBox"},
+                        {cbResellerType, "ComboBox"}
+                    });
+                }
+                else
+                {
+                    valid = Validator.Check(new Dictionary<Control, string>
+                    {
+                        {tbLink, "Link"},
+                        {tbCountOrdered, "Number"},
+                        {cbSocialNetwork, "ComboBox"},
+                        {cbResellerType, "ComboBox"}
+                    });
+                }
 
                 var validName = valid.GetType().Name;
                 if (validName.StartsWith("List")) Validator.ShowErrors(valid as List<string>);
@@ -76,33 +93,50 @@ namespace desktop_smm.Pages.Resellers
                         var responseAdcore = await requestAdcore.PostAPIData<RootAdcore>();
                         if (responseAdcore.status)
                         {
-                            var requestOrder = new Request("order", "", new Dictionary<string, string>
+                            if (checkDontSave.IsChecked == false)
                             {
-                                {"idSmmcraft", tbSmmcraftId.Text},
-                                {"idProject", responseAdcore.response.idProject.ToString()},
-                                {"socialNetwork", cbSocialNetwork.SelectedItem.ToString()},
-                                {"link", tbLink.Text},
-                                {"cost", tbCost.Text},
-                                {"spend", (type.price * int.Parse(tbCountOrdered.Text)).ToString()},
-                                {"countOrdered", tbCountOrdered.Text},
-                                {"payment", cbPayment.SelectedItem.ToString()},
-                                {"resellerId", type.resellerId.ToString()},
-                                {"resellerTypeId", type.id.ToString()},
-                                {"userId", Store.user.id.ToString()}
-                            });
-                            var responseOrder = await requestOrder.PostAPIData<RootOrder>();
-                            if (responseOrder.status)
-                            {
-                                MessageBox.Show("Заказ успешно создан!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                                var requestOrder = new Request("order", "", new Dictionary<string, string>
+                                {
+                                    {"idSmmcraft", tbSmmcraftId.Text},
+                                    {"idProject", responseAdcore.response.idProject.ToString()},
+                                    {"socialNetwork", cbSocialNetwork.SelectedItem.ToString()},
+                                    {"link", tbLink.Text},
+                                    {"cost", tbCost.Text},
+                                    {"spend", Helper.Rounded((type.price * int.Parse(tbCountOrdered.Text)))},
+                                    {"countOrdered", tbCountOrdered.Text},
+                                    {"payment", cbPayment.SelectedItem.ToString()},
+                                    {"resellerId", type.resellerId.ToString()},
+                                    {"resellerTypeId", type.id.ToString()},
+                                    {"userId", Store.user.id.ToString()}
+                                });
+                                var responseOrder = await requestOrder.PostAPIData<RootOrder>();
+                                if (responseOrder.status)
+                                {
+                                    MessageBox.Show("Заказ успешно создан!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    Helper.ClearFields(new Control[]
+                                    {
+                                        tbSmmcraftId, tbLink, tbCountOrdered, tbCost,
+                                        cbPayment, cbResellerType, cbSocialNetwork
+                                    });
+                                }
+                                else MessageBox.Show("Произошла ошибка при создании заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
-                            else MessageBox.Show("Произошла ошибка при создании заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            else
+                            {
+                                MessageBox.Show("Заказ без сохранения успешно создан!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                                Helper.ClearFields(new Control[]
+                                {
+                                        tbLink, tbCountOrdered, cbResellerType, cbSocialNetwork
+                                });
+                            }
                         }
                         else MessageBox.Show(responseAdcore.response.msg, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else MessageBox.Show("Заказ с таким -ID- существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (Exception) { MessageBox.Show("Произошла ошибка!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception) { MessageBox.Show("Произошла ошибка!\nВозможно, поля ввода не заполнены!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+            finally { btnOrder.IsEnabled = true; }
         }
     }
 }

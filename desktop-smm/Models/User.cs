@@ -16,7 +16,7 @@ namespace desktop_smm.Models
         public int roleId { get; set; }
     }
 
-    public class Err
+    public class ErrorUser
     {
         public int status { get; set; }
         public string message { get; set; }
@@ -27,7 +27,7 @@ namespace desktop_smm.Models
         public bool status { get; set; }
         [JsonProperty("response")]
         public List<User> users { get; set; }
-        public Err err { get; set; }
+        public ErrorUser err { get; set; }
     }
 
 }

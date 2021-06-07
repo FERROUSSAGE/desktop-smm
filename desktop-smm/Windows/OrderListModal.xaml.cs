@@ -1,4 +1,5 @@
 ﻿using desktop_smm.Models;
+using desktop_smm.Models.Resellers;
 using desktop_smm.Services;
 using System;
 using System.Collections.Generic;
@@ -128,6 +129,60 @@ namespace desktop_smm.Windows
                 }
             }
             catch (Exception){ MessageBox.Show("Произошла ошибка при удалении!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        private async void btnInfoOrder_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = Store.orders.FirstOrDefault(x => x.id == int.Parse((sender as Button).Tag.ToString()));
+            switch (selected.resellerId)
+            {
+                case 1:
+                    var requestAdcore = new Request("adcore", "info", new Dictionary<string, string>
+                    {
+                        { "idProject", selected.idProject.ToString() }, { "countOrdered", selected.countOrdered.ToString() }
+                    });
+                    var responseAdcore = await requestAdcore.PostAPIData<RootResellerInfo>();
+                    new InfoResellerModal(responseAdcore.response).Show();
+                    break;
+                case 2:
+                    var requestSmmok = new Request("smmok", "info", new Dictionary<string, string>{ { "idProject",selected.idProject.ToString() } });
+                    var responseSmmok = await requestSmmok.PostAPIData<RootResellerInfo>();
+                    new InfoResellerModal(responseSmmok.response).Show();
+                    break;
+                case 3:
+                    var requestVktarget = new Request("vktarget", "info", new Dictionary<string, string> { { "idProject", selected.idProject.ToString() } });
+                    var responseVktarger = await requestVktarget.PostAPIData<RootResellerInfo>();
+                    new InfoResellerModal(responseVktarger.response).Show();
+                    break;
+                case 4:
+                    var requestSpanel = new Request("spanel", "info", new Dictionary<string, string>
+                    {
+                        { "idProject", selected.idProject.ToString() }, { "countOrdered", selected.countOrdered.ToString() }
+                    });
+                    var responseSpanel = await requestSpanel.PostAPIData<RootResellerInfo>();
+                    new InfoResellerModal(responseSpanel.response).Show();
+                    break;
+            }
+        }
+
+        private async void btnUploadOrders_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TimeZoneInfo moscowTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
+                string moscowDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, moscowTimeZone).ToShortDateString();
+                
+                if(Store.orders.Where(x => x.date == moscowDate).Count() > 0)
+                {
+                    var requestDocs = new Request("spreadsheet", "", new Dictionary<string, string> { { "name", Store.user.name } });
+                    var responseDocs = await requestDocs.PostAPIData<RootSpreadsheet>();
+                    if (responseDocs.status)
+                        MessageBox.Show($"{responseDocs?.response?.msg}\nДата - {moscowDate}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    else MessageBox.Show("Произошла ошибка при выгрузки заказов!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else MessageBox.Show($"На дату - {moscowDate} еще нет заказов!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception) { MessageBox.Show("Произошла ошибка при выгрузке заказов!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }
