@@ -31,6 +31,7 @@ namespace desktop_smm.Pages.Resellers
 
             foreach(var type in types) cbResellerType.Items.Add($"{type.name} | {type.description} | {type.type}");
             cbPayment.ItemsSource = Helper.SetPaymentsForCombobox();
+            this.Loaded += async (s, e) => tbBalance.Text = await Helper.GetBalance("smmok") + "р";
         }
 
         private async void btnOrder_Click(object sender, RoutedEventArgs e)
@@ -105,17 +106,20 @@ namespace desktop_smm.Pages.Resellers
                                 if (responseOrder.status)
                                 {
                                     MessageBox.Show("Заказ успешно создан!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    tbBalance.Text = await Helper.GetBalance("smmok") + "р";
                                     Helper.ClearFields(new Control[]
                                     {
                                         tbSmmcraftId, tbLink, tbCountOrdered, tbCost,
                                         cbPayment, cbResellerType
                                     });
+                                    checkDontSave.IsChecked = false;
                                 }
                                 else MessageBox.Show("Произошла ошибка при создании заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                             else
                             {
                                 MessageBox.Show("Заказ без сохранения успешно создан!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                                tbBalance.Text = await Helper.GetBalance("smmok") + "р";
                                 Helper.ClearFields(new Control[]
                                 {
                                         tbLink, tbCountOrdered, cbResellerType, tbSmmcraftId

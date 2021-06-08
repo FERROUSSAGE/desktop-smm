@@ -14,6 +14,15 @@ namespace desktop_smm.Models
         public string login { get; set; }
         public string password { get; set; }
         public int roleId { get; set; }
+        public string role
+        { 
+            get 
+            {
+                if (roleId == 1)
+                    return "Оператор";
+                return "Администратор";
+            } 
+        }
     }
 
     public class ErrorUser

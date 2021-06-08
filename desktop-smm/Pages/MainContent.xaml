@@ -1,4 +1,4 @@
-﻿<Page x:Class="desktop_smm.Pages.MainContent"
+﻿ <Page x:Class="desktop_smm.Pages.MainContent"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -68,6 +68,14 @@
                 <Button 
                     Content="Почта"
                     Uid="3"
+                    Style="{StaticResource BaseButton}"
+                    Margin="0 15"
+                    Height="69"/>
+                <Button 
+                    Content="Админ панель"
+                    Uid="4"
+                    x:Name="btnLoadAdmin"
+                    Visibility="Hidden"
                     Style="{StaticResource BaseButton}"
                     Margin="0 15 0 0"
                     Height="69"/>

@@ -19,5 +19,6 @@ namespace desktop_smm.Models
         public bool status { get; set; }
         [JsonProperty("response")]
         public List<Reseller> resellers { get; set; }
+        public string message { get; set; }
     }
 }

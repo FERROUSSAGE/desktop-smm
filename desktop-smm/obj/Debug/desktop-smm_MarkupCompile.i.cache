@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Илья\source\repos\desktop-smm\desktop-smm\App.xaml
-13-960869220
+22-340541051
 
-34-1623866300
+451835822964
 15-224002665
-MainWindow.xaml;Pages\AuthPage.xaml;Pages\InfoPage.xaml;Pages\Mail.xaml;Pages\MainContent.xaml;Pages\OrderByHand.xaml;Pages\Resellers\Adcore.xaml;Pages\Resellers\Main.xaml;Pages\Resellers\Smmok.xaml;Pages\Resellers\Spanel.xaml;Pages\Resellers\Vktarget.xaml;Windows\InfoResellerModal.xaml;Windows\OrderListModal.xaml;
+MainWindow.xaml;Pages\Admin\Main.xaml;Pages\Admin\Operators\AddWorker.xaml;Pages\Admin\Operators\IndexMain.xaml;Pages\Admin\Operators\Workers.xaml;Pages\Admin\Resellers.xaml;Pages\Admin\ResellerTypes\Added.xaml;Pages\Admin\ResellerTypes\MainIndex.xaml;Pages\Admin\ResellerTypes\Services.xaml;Pages\AuthPage.xaml;Pages\InfoPage.xaml;Pages\Mail.xaml;Pages\MainContent.xaml;Pages\OrderByHand.xaml;Pages\Resellers\Adcore.xaml;Pages\Resellers\Main.xaml;Pages\Resellers\Smmok.xaml;Pages\Resellers\Spanel.xaml;Pages\Resellers\StreamBooster.xaml;Pages\Resellers\Vktarget.xaml;Windows\InfoResellerModal.xaml;Windows\OrderListModal.xaml;
 
-False
+True
 

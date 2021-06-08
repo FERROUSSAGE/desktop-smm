@@ -17,6 +17,7 @@ using desktop_smm.Pages;
 using desktop_smm.Windows;
 using System.ComponentModel;
 using System.Diagnostics;
+using desktop_smm.Services;
 
 namespace desktop_smm.Pages
 {
@@ -36,6 +37,8 @@ namespace desktop_smm.Pages
             {
                 var button = item as Button;
 
+                if (Store.user.roleId == 2) btnLoadAdmin.Visibility = Visibility.Visible;
+
                 button.Click += (s, e) =>
                 {
                     foreach (var j in stButtons.Children)
@@ -43,7 +46,11 @@ namespace desktop_smm.Pages
 
                     button.Background = (Brush)Application.Current.Resources["ColorButtonActive"];
                     if (button.Tag != null && button.Tag.ToString() == "orders") new OrderListModal().Show();
-                    else MainContentLoad.NavigationService.Navigate(pages[int.Parse(button.Uid)]);
+                    else
+                    {
+                        if (button.Uid == "4") this.NavigationService.Navigate(new Admin.Main());
+                        else MainContentLoad.NavigationService.Navigate(pages[int.Parse(button.Uid)]);
+                    }
                 };
             }
 

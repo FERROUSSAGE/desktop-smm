@@ -23,7 +23,7 @@ namespace desktop_smm.Pages.Resellers
         public Main()
         {
             InitializeComponent();
-            List<Page> resellerPages = new List<Page> { new Adcore(), new Smmok(), new Vktarget(), new Spanel() };
+            List<Page> resellerPages = new List<Page> { new Adcore(), new Smmok(), new Vktarget(), new Spanel(), new StreamBooster() };
 
             foreach (var item in GridButtons.Children)
             {

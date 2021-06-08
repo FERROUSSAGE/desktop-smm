@@ -31,6 +31,7 @@ namespace desktop_smm.Windows
 
             _searchDebouncer = new Debouncer(TimeSpan.FromSeconds(.75), Search);
 
+            this.Loaded += async (s, e) => await Store.FetchOrders();
             RenderOrders();
             tbCountPage.Text = $"Страница: {page}";
 

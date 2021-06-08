@@ -1,0 +1,102 @@
+﻿<Page x:Class="desktop_smm.Pages.Admin.ResellerTypes.Added"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:desktop_smm.Pages.Admin.ResellerTypes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="Added">
+
+    <Grid 
+        Margin="0 10 0 0"
+        HorizontalAlignment="Left">
+        <StackPanel Width="441 ">
+            <ComboBox
+                x:Name="cbSocialNetwork"
+                Text="Социальная сеть"
+                Uid="Социальная сеть"
+                Padding="18 15"
+                BorderBrush="{StaticResource ColorBorder}"
+                BorderThickness="1"
+                Margin="0 7"/>
+            <ComboBox
+                x:Name="cbReseller"
+                Text="Реселлер"
+                Uid="Реселлер"
+                Padding="18 15"
+                BorderBrush="{StaticResource ColorBorder}"
+                BorderThickness="1"
+                Margin="0 7"/>
+            <TextBox
+                x:Name="tbResellerType"
+                Uid="Тип услуги"
+                Style="{StaticResource Placeholder}"
+                Foreground="{StaticResource ColorText}"
+                Background="Transparent"
+                BorderThickness="1"
+                Padding="15 10"
+                Margin="0 7 0 7">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        <Border 
+                            BorderBrush="Yellow" 
+                            BorderThickness="1">
+                            <TextBlock
+                                Text="В качестве типа указывается номер или строка с API реселлеров"/>
+                        </Border>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox
+                x:Name="tbDescription"
+                Uid="Описание"
+                Style="{StaticResource Placeholder}"
+                Foreground="{StaticResource ColorText}"
+                Background="Transparent"
+                BorderThickness="1"
+                Padding="15 10"
+                Margin="0 7">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        <Border 
+                            BorderBrush="Yellow" 
+                            BorderThickness="1">
+                            <TextBlock
+                                Text="В качестве разделителя используй символ - |"/>
+                        </Border>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox
+                x:Name="tbPrice"
+                Uid="Стоимость за единиицу"
+                Style="{StaticResource Placeholder}"
+                Foreground="{StaticResource ColorText}"
+                Background="Transparent"
+                BorderThickness="1"
+                Padding="15 10"
+                Margin="0 7 0 42">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        <Border 
+                            BorderBrush="Yellow" 
+                            BorderThickness="1">
+                            <TextBlock
+                                Text="Если у услуги есть минимальное количество, используйте его - |"/>
+                        </Border>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+
+            <Button
+                x:Name="btnAddType"
+                Style="{StaticResource BaseButton}"
+                HorizontalAlignment="Center"
+                Width="143"
+                Height="54"
+                Click="btnAddType_Click"
+                Content="Добавить"/>
+        </StackPanel>
+    </Grid>
+</Page>

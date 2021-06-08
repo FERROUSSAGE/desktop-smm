@@ -1,0 +1,100 @@
+﻿<Page x:Class="desktop_smm.Pages.Admin.ResellerTypes.Services"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:desktop_smm.Pages.Admin.ResellerTypes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="Services">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ComboBox
+            HorizontalAlignment="Left"
+            x:Name="cbReseller"
+            Text="Выберите реселлер"
+            Uid="Выберите реселлер"
+            SelectionChanged="cbReseller_SelectionChanged"
+            Padding="18 25"
+            Width="247"
+            BorderBrush="{StaticResource ColorBorder}"
+            BorderThickness="1" 
+            Margin="0 7"/>
+
+        <ListView 
+            Margin="0 30 0 0"
+            x:Name="lwTypesList"
+            Grid.Row="1"
+            BorderThickness="0"
+            ItemContainerStyle="{StaticResource ListViewItemBase}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Имя">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding name}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Тип реселлера">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding type}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Описание">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate >
+                                    <TextBlock 
+                                        TextWrapping="Wrap"
+                                        Text="{Binding description}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Стоимость">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding price}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button 
+                                        Width="158"
+                                        Height="54"
+                                        Style="{StaticResource ButtonEdit}"
+                                        Name="btnEdit"
+                                        Tag="{Binding id}"
+                                        Click="btnEdit_Click"
+                                        Content="Редактировать"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button 
+                                        Width="143"
+                                        Height="54"
+                                        Style="{StaticResource ButtonDelete}"
+                                        Tag="{Binding id}"
+                                        Click="Button_Click"
+                                        Content="Удалить"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

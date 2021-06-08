@@ -54,6 +54,7 @@
         <ListView 
             x:Name="lwOrderList"
             Grid.Row="1" 
+            BorderThickness="0"
             ItemContainerStyle="{StaticResource ListViewItemBase}">
             <ListView.View>
                 <GridView>
@@ -76,6 +77,13 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate >
                                     <TextBlock Text="{Binding reseller.name}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Услуга">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate >
+                                    <TextBlock Text="{Binding reseller_type.description}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -144,8 +152,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn 
-                            Header="Инфо">
+                        <GridViewColumn Header="">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button 
@@ -165,7 +172,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Удалить">
+                        <GridViewColumn Header="">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button 

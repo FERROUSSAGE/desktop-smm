@@ -61,6 +61,9 @@ namespace desktop_smm.Services
                 case "user":
                     this.URL += $"user/{method}";
                     break;
+                case "streambooster":
+                    this.URL += $"streambooster/{method}";
+                    break;
             }
         }
 

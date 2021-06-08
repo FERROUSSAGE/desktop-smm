@@ -24,6 +24,7 @@ namespace desktop_smm
                 await Store.FetchOrders();
                 await Store.FetchTypes();
                 await Store.FetchResellers();
+                await Store.FetchUsers();
             }
             catch (Exception)
             {

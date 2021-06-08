@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Balance.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Reseller.cs" />
@@ -69,7 +70,32 @@
     <Compile Include="Models\Resellers\Vktarget.cs" />
     <Compile Include="Models\ResellerType.cs" />
     <Compile Include="Models\Spreadsheet.cs" />
+    <Compile Include="Models\Streambooster.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Pages\Admin\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Operators\AddWorker.xaml.cs">
+      <DependentUpon>AddWorker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Operators\IndexMain.xaml.cs">
+      <DependentUpon>IndexMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Operators\Workers.xaml.cs">
+      <DependentUpon>Workers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Resellers.xaml.cs">
+      <DependentUpon>Resellers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\ResellerTypes\Added.xaml.cs">
+      <DependentUpon>Added.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\ResellerTypes\MainIndex.xaml.cs">
+      <DependentUpon>MainIndex.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\ResellerTypes\Services.xaml.cs">
+      <DependentUpon>Services.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
@@ -84,6 +110,9 @@
     </Compile>
     <Compile Include="Pages\Resellers\Spanel.xaml.cs">
       <DependentUpon>Spanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Resellers\StreamBooster.xaml.cs">
+      <DependentUpon>StreamBooster.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Resellers\Vktarget.xaml.cs">
       <DependentUpon>Vktarget.xaml</DependentUpon>
@@ -111,6 +140,38 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Admin\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\Operators\AddWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\Operators\IndexMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\Operators\Workers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\Resellers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\ResellerTypes\Added.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\ResellerTypes\MainIndex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\ResellerTypes\Services.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AuthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Resellers\Spanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Resellers\StreamBooster.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,5 +288,6 @@
   <ItemGroup>
     <Resource Include="Resources\Images\background_auth.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

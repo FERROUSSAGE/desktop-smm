@@ -93,7 +93,37 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <Style x:Key="ButtonEdit" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorBorder}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{StaticResource ColorButtonAccent}"
+                                Padding="{TemplateBinding Padding}"
+                                BorderThickness="1"
+                                CornerRadius="14"
+                                MaxWidth="232"
+                                Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style BasedOn="{StaticResource BaseButton}" TargetType="Button" x:Key="ButtonInfo">
             <Style.Setters>
                 <Setter Property="Background" Value="White"/>
@@ -206,7 +236,7 @@
         <Style TargetType="Border" x:Key="ActiveMailText" BasedOn="{StaticResource ActiveResellerText}">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
-
+        
         <Style TargetType="TextBox" x:Key="Placeholder">
             <Setter Property="Template">
                 <Setter.Value>
@@ -438,9 +468,9 @@
         <Style TargetType="GridViewColumnHeader">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Foreground" Value="{StaticResource ColorDataGrid}" />
-            <Setter Property="FontFamily" Value="{StaticResource MullerLight}" />
-            <Setter Property="FontWeight" Value="Light"/>
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="{StaticResource MullerMedium}" />
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
@@ -501,49 +531,5 @@
             </Setter>
         </Style>
 
-        <Style TargetType="{x:Type DataGridRow}">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="SnapsToDevicePixels" Value="true"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="BorderThickness" Value="0 0 0 1"/>
-            <Setter Property="BorderBrush" Value="{StaticResource ColorDataGrid}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridRow}">
-                        <Border
-                            x:Name="DGR_Border"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Padding="{TemplateBinding Padding}"
-                            SnapsToDevicePixels="True">
-                            <SelectiveScrollingGrid>
-                                <SelectiveScrollingGrid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
-                                </SelectiveScrollingGrid.RowDefinitions>
-                                <DataGridCellsPresenter
-                                    Grid.Column="1"
-                                    ItemsPanel="{TemplateBinding ItemsPanel}"/>
-                            </SelectiveScrollingGrid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="AlternationIndex" Value="2" >
-                    <Setter Property="Background" Value="{StaticResource ColorDataGrid}" />
-                </Trigger>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource ColorButtonActive}"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource ColorButtonActive}"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        
     </Application.Resources>
 </Application>

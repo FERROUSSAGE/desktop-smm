@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using desktop_smm.Models;
 
@@ -62,6 +63,15 @@ namespace desktop_smm.Services
                 if (control.GetType().Name == "ComboBox")
                     (control as ComboBox).Text = (control as ComboBox).Uid;
             }
+        }
+
+        public async static Task<string> GetBalance(string service)
+        {
+            var request = new Request(service, "balance");
+            var response = await request.GetApiData<RootBalance>();
+            if (response.status)
+                return response.response.balance;
+            return "0";
         }
     }
 }

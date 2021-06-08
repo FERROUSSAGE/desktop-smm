@@ -39,6 +39,8 @@ namespace desktop_smm.Pages.Resellers
             };
 
             cbPayment.ItemsSource = Helper.SetPaymentsForCombobox();
+
+            this.Loaded += async (s, e) => tbBalance.Text = await Helper.GetBalance("spanel") + "р";
         }
 
         private async void btnOrder_Click(object sender, RoutedEventArgs e)
@@ -120,17 +122,20 @@ namespace desktop_smm.Pages.Resellers
                                 if (responseOrder.status)
                                 {
                                     MessageBox.Show("Заказ успешно создан!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    tbBalance.Text = await Helper.GetBalance("spanel") + "р";
                                     Helper.ClearFields(new Control[]
                                     {
-                                    tbSmmcraftId, tbLink, tbCountOrdered, tbCost,
-                                    cbPayment, cbResellerType, cbSocialNetwork
+                                        tbSmmcraftId, tbLink, tbCountOrdered, tbCost,
+                                        cbPayment, cbResellerType, cbSocialNetwork
                                     });
+                                    checkDontSave.IsChecked = false;
                                 }
                                 else MessageBox.Show("Произошла ошибка при создании заказа!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                             else
                             {
                                 MessageBox.Show("Заказ без сохранения успешно создан!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                                tbBalance.Text = await Helper.GetBalance("spanel") + "р";
                                 Helper.ClearFields(new Control[]
                                 {
                                         tbLink, tbCountOrdered, cbResellerType, cbSocialNetwork

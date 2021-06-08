@@ -22,7 +22,8 @@ namespace desktop_smm.Services
             {"Text", "^[А-ЯЁа-яЁ A-Za-z]*$"},
             {"LoginAndPassword", "^[A-Z-a-z0-9]*$"},
             {"Link", @"^http(s)?:\/\/"},
-            {"ComboBox", ""}
+            {"ComboBox", ""},
+            {"Uid", "^[A-Za-z_0-9-#]*$"}
         };
 
 
@@ -34,6 +35,7 @@ namespace desktop_smm.Services
             {"Empty", "Была передана пустая строка"},
             {"LoginAndPassword", "Логин и пароль может содержать только латиницу"},
             {"Link", "Была веден формат не в виде ссылки"},
+            {"Uid", "Был введен не коректный UUID"}
         };
 
         public static void ShowErrors(List<string> errors)
@@ -42,18 +44,42 @@ namespace desktop_smm.Services
                 MessageBox.Show(error, "Произошла ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             errors.Clear();
         }
-        private static void SelectError(Control control)
+        public static void SelectError(Control control)
         {
             control.BorderBrush = Brushes.Red;
             control.Focus();
         }
 
-        private static void ResetSelect(Control control) => control.BorderBrush = (Brush)Application.Current.Resources["ColorBorder"];
+        public static void ResetSelect(Control control) => control.BorderBrush = (Brush)Application.Current.Resources["ColorBorder"];
 
         public static bool ValidateFields(string field)
         {
             if (String.IsNullOrEmpty(field))
                 return false;
+            return true;
+        }
+
+        public static bool CheckFields(Control[] controls)
+        {
+            foreach(var control in controls)
+            {
+                var textbox = (control as TextBox);
+                var combobox = (control as ComboBox);
+
+                if(combobox.SelectedItem == null)
+                {
+                    SelectError(control);
+                    MessageBox.Show($"{patternErrors["Empty"]}\n\nВ поле - {(combobox).Uid}");
+                    return false;
+                }
+                else if (String.IsNullOrEmpty(textbox.Text))
+                {
+                    SelectError(control);
+                    MessageBox.Show($"{patternErrors["Empty"]}\n\nВ поле - {(combobox).Uid}");
+                    return false;
+                }
+                ResetSelect(control);
+            }
             return true;
         }
 

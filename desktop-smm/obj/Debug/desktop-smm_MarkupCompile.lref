@@ -1,6 +1,11 @@
 ﻿
 FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\App.xaml;;
 FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\MainWindow.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Admin\Main.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Admin\Resellers.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Admin\ResellerTypes\Added.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Admin\ResellerTypes\MainIndex.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Admin\ResellerTypes\Services.xaml;;
 FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\AuthPage.xaml;;
 FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\InfoPage.xaml;;
 FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Mail.xaml;;
@@ -13,4 +18,8 @@ FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Resellers\Spanel.x
 FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Resellers\Vktarget.xaml;;
 FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Windows\InfoResellerModal.xaml;;
 FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Windows\OrderListModal.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Admin\Operators\AddWorker.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Admin\Operators\IndexMain.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Admin\Operators\Workers.xaml;;
+FC:\Users\Илья\source\repos\desktop-smm\desktop-smm\Pages\Resellers\StreamBooster.xaml;;
 

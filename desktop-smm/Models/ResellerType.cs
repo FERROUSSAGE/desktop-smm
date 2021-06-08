@@ -16,6 +16,7 @@ namespace desktop_smm.Models
         public string name { get; set; }
         public int resellerId { get; set; }
         public Reseller reseller { get; set; }
+        public string msg { get; set; }
     }
 
     public class RootResellerType

@@ -8,13 +8,14 @@
       d:DesignHeight="600" d:DesignWidth="900"
       Title="Main">
 
-    <Grid MaxWidth="527">
+    <Grid MaxWidth="600">
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="80"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid x:Name="GridButtons">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -51,6 +52,14 @@
                 <TextBlock 
                 Text="SocialPanel"
                 Uid="3"
+                Style="{StaticResource ResellerText}"/>
+            </Border>
+            <Border
+                Grid.Column="4"
+                Style="{StaticResource ActiveResellerText}">
+                <TextBlock 
+                Text="StreamBoost"
+                Uid="4"
                 Style="{StaticResource ResellerText}"/>
             </Border>
         </Grid>
